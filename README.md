@@ -62,9 +62,7 @@ Enumerations :
 
 Résumé de l'architecture JMS du prototype.
 
-|ServiceFormation| --> sujetProjetsFormation  --> |ServiceP|  --> listeSalles
-                                              --> |ServiceRH| --> listeFormateurs
-                                              --> |ServiceTC| --> listeFormations
+![Schema Architecture JMS](https://zupimages.net/up/19/49/x840.jpg)
 
 En résumé :
 1. On crée un projet et on le liste dans un Sujet/Topic ;
