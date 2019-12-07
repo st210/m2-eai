@@ -19,6 +19,12 @@ public class Catalogue implements Serializable {
     private String nomCatalogue;
     private Formation[] formation;
 
+    /**
+     * Constructeur d'un catalogue de formation
+     * @param idCatalogue identifiant unique du catalogue
+     * @param nomCatalogue intitule du catalogue
+     * @param formation liste des formations du catalogue
+     */
     public Catalogue(Long idCatalogue, String nomCatalogue, Formation[] formation) {
         this.idCatalogue = idCatalogue;
         this.nomCatalogue = nomCatalogue;

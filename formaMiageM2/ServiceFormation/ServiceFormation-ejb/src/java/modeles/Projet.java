@@ -21,16 +21,26 @@ public class Projet implements Serializable {
     private String intituleProjet;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateProjet;
+    private Formation formation;
+    private Formateur formateur;
+    private Salle salle;
 
-    public Projet(Long idProjet, String intituleProjet) {
-        this.idProjet = idProjet;
-        this.intituleProjet = intituleProjet;
-    }
-    
-    public Projet(Long idProjet, String intituleProjet, Date dateProjet) {
+    /**
+     * Création d'un projet de formation
+     * @param idProjet identifiant unique d'un projet
+     * @param intituleProjet nom d'un projet
+     * @param dateProjet date d'un projet
+     * @param formation intitule de la formation du projet
+     * @param formateur formateur assurant la formation du projet
+     * @param salle salle disponible pour assurer la formation
+     */
+    public Projet(Long idProjet, String intituleProjet, Date dateProjet, Formation formation, Formateur formateur, Salle salle) {
         this.idProjet = idProjet;
         this.intituleProjet = intituleProjet;
         this.dateProjet = dateProjet;
+        this.formation = formation;
+        this.formateur = formateur;
+        this.salle = salle;
     }
     
     public Long getIdProjet() {
@@ -49,6 +59,18 @@ public class Projet implements Serializable {
         return dateProjet;
     }
 
+    public Formation getFormation() {
+        return formation;
+    }
+
+    public Formateur getFormateur() {
+        return formateur;
+    }
+
+    public Salle getSalle() {
+        return salle;
+    }
+    
     public void setIdProjet(Long idProjet) {
         this.idProjet = idProjet;
     }
@@ -59,6 +81,18 @@ public class Projet implements Serializable {
 
     public void setDateProjet(Date date) {
         this.dateProjet = date;
+    }
+
+    public void setFormation(Formation formation) {
+        this.formation = formation;
+    }
+
+    public void setFormateur(Formateur formateur) {
+        this.formateur = formateur;
+    }
+
+    public void setSalle(Salle salle) {
+        this.salle = salle;
     }
     
     @Override
