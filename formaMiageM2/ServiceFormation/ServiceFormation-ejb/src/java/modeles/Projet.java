@@ -1,7 +1,5 @@
 package modeles;
 
-import enumerations.EnumEtat;
-import enumerations.EnumType;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
@@ -20,17 +18,21 @@ public class Projet implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idProjet;
-    private String intitule;
-    private String description;
-    private EnumType type;
-    private int capaciteMax;
-    private int capaciteMin;
-    private int tarif;
-    private EnumEtat etat;
-    private Formateur[] listeFormateurs;
+    private String intituleProjet;
     @Temporal(javax.persistence.TemporalType.DATE)
-    private Date periode;
+    private Date dateProjet;
 
+    public Projet(Long idProjet, String intituleProjet) {
+        this.idProjet = idProjet;
+        this.intituleProjet = intituleProjet;
+    }
+    
+    public Projet(Long idProjet, String intituleProjet, Date dateProjet) {
+        this.idProjet = idProjet;
+        this.intituleProjet = intituleProjet;
+        this.dateProjet = dateProjet;
+    }
+    
     public Long getIdProjet() {
         return idProjet;
     }
@@ -39,83 +41,25 @@ public class Projet implements Serializable {
         return serialVersionUID;
     }
 
-    public String getIntitule() {
-        return intitule;
+    public String getIntituleProjet() {
+        return intituleProjet;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public EnumType getType() {
-        return type;
-    }
-
-    public int getCapaciteMax() {
-        return capaciteMax;
-    }
-
-    public int getCapaciteMin() {
-        return capaciteMin;
-    }
-
-    public int getTarif() {
-        return tarif;
-    }
-
-    public EnumEtat getEtat() {
-        return etat;
-    }
-
-    public Formateur[] getListeFormateurs() {
-        return listeFormateurs;
-    }
-
-    public Date getPeriode() {
-        return periode;
+    public Date getDateProjet() {
+        return dateProjet;
     }
 
     public void setIdProjet(Long idProjet) {
         this.idProjet = idProjet;
     }
         
-    public void setIntitule(String intitule) {
-        this.intitule = intitule;
+    public void setIntituleProjet(String intitule) {
+        this.intituleProjet = intitule;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDateProjet(Date date) {
+        this.dateProjet = date;
     }
-
-    public void setType(EnumType type) {
-        this.type = type;
-    }
-
-    public void setCapaciteMax(int capaciteMax) {
-        this.capaciteMax = capaciteMax;
-    }
-
-    public void setCapaciteMin(int capaciteMin) {
-        this.capaciteMin = capaciteMin;
-    }
-
-    public void setTarif(int tarif) {
-        this.tarif = tarif;
-    }
-
-    public void setEtat(EnumEtat etat) {
-        this.etat = etat;
-    }
-
-    public void setListeFormateurs(Formateur[] listeFormateurs) {
-        this.listeFormateurs = listeFormateurs;
-    }
-
-    public void setPeriode(Date periode) {
-        this.periode = periode;
-    }
-
-    
     
     @Override
     public int hashCode() {
