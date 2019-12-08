@@ -2,6 +2,8 @@ package modeles;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.ejb.ActivationConfigProperty;
+import javax.ejb.MessageDriven;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,7 +21,7 @@ public class Projet implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idProjet;
     private String intituleProjet;
-    @Temporal(javax.persistence.TemporalType.DATE)
+    //@Temporal(javax.persistence.TemporalType.DATE)
     private Date dateProjet;
     private Formation formation;
     private Formateur formateur;
@@ -34,13 +36,19 @@ public class Projet implements Serializable {
      * @param formateur formateur assurant la formation du projet
      * @param salle salle disponible pour assurer la formation
      */
-    public Projet(Long idProjet, String intituleProjet, Date dateProjet, Formation formation, Formateur formateur, Salle salle) {
+    public Projet(Long idProjet, String intituleProjet, Date dateProjet, Formation formation, Formateur formateur, Salle salle){
         this.idProjet = idProjet;
         this.intituleProjet = intituleProjet;
         this.dateProjet = dateProjet;
         this.formation = formation;
         this.formateur = formateur;
         this.salle = salle;
+    }
+
+    // test
+    public Projet(Long idProjet, String intituleProjet) {
+        this.idProjet = idProjet;
+        this.intituleProjet = intituleProjet;
     }
     
     public Long getIdProjet() {
