@@ -14,10 +14,6 @@ import modeles.Salle;
  *
  * @author Estée
  */
-/*@MessageDriven(activationConfig = {
-    @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "FILE_SALLE"),
-    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue")
-})*/
 @MessageDriven(activationConfig = {
     @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "listeProjets"),
     @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Topic")
@@ -27,11 +23,12 @@ public class gestionSalle implements MessageListener{
     // récup msg du topic projet
     @Override
     public void onMessage(Message message) {
+        Logger.getLogger(Salle.class.getName()).log(Level.SEVERE, "Salle OK OKAY ????");
         if (message instanceof ObjectMessage) {
             try {
                 ObjectMessage om = (ObjectMessage) message;
                 Object obj = om.getObject();
-                System.out.println("OK Salle");
+                Logger.getLogger(Salle.class.getName()).log(Level.SEVERE, "Salle juste OK");
             } catch (JMSException ex) {
                 Logger.getLogger(Salle.class.getName()).log(Level.SEVERE, null, ex);
             }

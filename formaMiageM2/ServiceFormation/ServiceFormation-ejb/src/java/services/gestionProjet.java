@@ -31,6 +31,7 @@ import modeles.Salle;
 public class gestionProjet {
     @Inject
     private static JMSContext context;
+    
     @Resource(lookup = "listeProjets")
     private static Topic topic;
     
