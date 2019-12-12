@@ -35,12 +35,14 @@ public class gestionProjet {
     @Resource(lookup = "listeProjets")
     private static Topic topic;
     
+    
+    /*
     public static void main(String[] args) {
         Projet p = new Projet((long)1, "formation EAI");
         ObjectMessage om = context.createObjectMessage(p);
         context.createProducer().send(topic, om);
     }
-
+*/
     public Projet creerProjet(){
         Projet p = new Projet((long)1, "formation EAI");
         ObjectMessage om = context.createObjectMessage(p);

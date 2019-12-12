@@ -22,6 +22,11 @@ public class ProjetSingleton {
     //FormateurSingleton formateur;
     
     private final ArrayList<Projet> listeProjets = new ArrayList<>();
+    
+    public void creerProjet(Projet p){
+        listeProjets.add(p);
+    }
+    
     /*
     public Projet creerProjet(Long idProjet, String intituleProjet, Date dateProjet, Formation formation, Formateur formateur, Salle salle) {
         Projet p = new Projet(listeProjets.size(), formateur.getFormateur(idFormateur));
