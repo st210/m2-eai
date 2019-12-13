@@ -46,7 +46,7 @@ Permet de gérer des formations et des catalogues de formations.
 
 Résumé de l'architecture JMS du prototype.
 
-![Schema Architecture JMS](https://zupimages.net/up/19/49/x840.jpg)
+![Schema Architecture JMS](https://zupimages.net/up/19/50/dic3.jpg)
 
 En résumé :
 1. On crée un projet et on récupère les informations grâce à un Sujet/Topic qui va les demander aux services concernés ;
