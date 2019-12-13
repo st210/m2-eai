@@ -31,7 +31,7 @@ public class ProjetREST {
     @GET
     @Path("/salle")
     public Salle createSalle(){
-        SalleSingleton salle = new SalleSingleton();
+        
         
         return salle;
     }

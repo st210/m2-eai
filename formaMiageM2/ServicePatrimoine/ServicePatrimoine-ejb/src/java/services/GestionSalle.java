@@ -33,26 +33,20 @@ public class GestionSalle implements MessageListener{
         }
     }
     
-    
-    
-    /*
-    @Override
-    public void onMessage(Message message) {
-        if (message instanceof ObjectMessage) {
-            try {
-                ObjectMessage om = (ObjectMessage) message;
-                Object obj = om.getObject();
-                //Salle s = GestionSalle.getSalle();
-            } catch (JMSException ex) {
-                Logger.getLogger(Salle.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }
-    */
-    
     /**
      * Creer une salle
      */
+    public SalleSingleton creerSalle(){
+        SalleSingleton salleS = new SalleSingleton();
+        return salleS;
+    }
+    
+    /**
+     * Obtenir une salle
+     */
+    public SalleSingleton getSalleById(Integer idS){
+        return ;
+    }
     
     /**
      * Supprimer une salle
