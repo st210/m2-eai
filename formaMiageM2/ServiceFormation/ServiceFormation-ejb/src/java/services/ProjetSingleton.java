@@ -1,16 +1,10 @@
 package services;
 
+import enumerations.EnumEtat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
-import modeles.Formateur;
-import modeles.Formation;
 import modeles.Projet;
-import modeles.Salle;
-import static modeles.Formateur_.idFormateur;
 
 /**
  *
@@ -19,11 +13,19 @@ import static modeles.Formateur_.idFormateur;
 @Singleton
 @LocalBean
 public class ProjetSingleton {
-    private final HashMap<Integer, Projet> listeProjets;
+    private final ArrayList<Projet> listeProjets = new ArrayList<>();
     
-    public ProjetSingleton(){
-        listeProjets = new HashMap<>();
-        Projet p1 = new Projet(1, "Projet Beta Test");
-        listeProjets.put(p1.getIdProjet(), p1);
+    public Projet creerProjet(Integer idP, String intituleP) {
+        Projet p = new Projet(idP, intituleP); 
+        listeProjets.add(p);
+        return p;
+    }
+    
+    public Projet recupProjetById(int idP){
+        return listeProjets.get(idP);
+    }
+    
+    public void mettreEnAttenteProjet(int p){
+        listeProjets.get(p).setEtatProjet(EnumEtat.EnAttente);
     }
 }

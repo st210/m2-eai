@@ -15,9 +15,9 @@ public class Catalogue implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idCatalogue;
+    private Integer idCatalogue;
     private String nomCatalogue;
-    private Formation[] formation;
+    private Formation formation;
 
     /**
      * Constructeur d'un catalogue de formation
@@ -25,13 +25,13 @@ public class Catalogue implements Serializable {
      * @param nomCatalogue intitule du catalogue
      * @param formation liste des formations du catalogue
      */
-    public Catalogue(Long idCatalogue, String nomCatalogue, Formation[] formation) {
+    public Catalogue(Integer idCatalogue, String nomCatalogue, Formation formation) {
         this.idCatalogue = idCatalogue;
         this.nomCatalogue = nomCatalogue;
         this.formation = formation;
     }
     
-    public Long getIdCatalogue() {
+    public Integer getIdCatalogue() {
         return idCatalogue;
     }
 
@@ -39,11 +39,11 @@ public class Catalogue implements Serializable {
         return nomCatalogue;
     }
 
-    public Formation[] getFormation() {
+    public Formation getFormation() {
         return formation;
     }
     
-    public void setIdCatalogue(Long idCatalogue) {
+    public void setIdCatalogue(Integer idCatalogue) {
         this.idCatalogue = idCatalogue;
     }
 
@@ -51,7 +51,7 @@ public class Catalogue implements Serializable {
         this.nomCatalogue = nomCatalogue;
     }
 
-    public void setFormation(Formation[] formation) {
+    public void setFormation(Formation formation) {
         this.formation = formation;
     }
     

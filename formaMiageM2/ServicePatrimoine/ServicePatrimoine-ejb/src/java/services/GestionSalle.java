@@ -23,12 +23,10 @@ public class GestionSalle implements MessageListener{
     // récup msg du topic projet
     @Override
     public void onMessage(Message message) {
-        Logger.getLogger(Salle.class.getName()).log(Level.SEVERE, "Salle OK OKAY ????");
         if (message instanceof ObjectMessage) {
             try {
                 ObjectMessage om = (ObjectMessage) message;
                 Object obj = om.getObject();
-                Logger.getLogger(Salle.class.getName()).log(Level.SEVERE, "Salle juste OK");
             } catch (JMSException ex) {
                 Logger.getLogger(Salle.class.getName()).log(Level.SEVERE, null, ex);
             }

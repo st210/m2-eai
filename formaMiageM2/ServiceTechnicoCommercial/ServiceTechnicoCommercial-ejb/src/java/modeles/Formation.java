@@ -19,7 +19,7 @@ public class Formation implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idFormation;
+    private Integer idFormation;
     private String intitule;
     private String description;
     private EnumTypeFormation typeFormation;
@@ -43,7 +43,7 @@ public class Formation implements Serializable {
      * @param listeSalles liste des salles potentielles où peut se dérouler la formation
      * @param listeFormateurs liste des formateurs potentiels pouvant animer la formation
      */
-    public Formation(Long idFormation, String intitule, String description, EnumTypeFormation typeFormation, int capaciteMax, int capaciteMin, int tarif, EnumEtatFormation etatFormation, Salle[] listeSalles, Formateur[] listeFormateurs) {
+    public Formation(Integer idFormation, String intitule, String description, EnumTypeFormation typeFormation, int capaciteMax, int capaciteMin, int tarif, EnumEtatFormation etatFormation, Salle[] listeSalles, Formateur[] listeFormateurs) {
         this.idFormation = idFormation;
         this.intitule = intitule;
         this.description = description;
@@ -56,7 +56,17 @@ public class Formation implements Serializable {
         this.listeFormateurs = listeFormateurs;
     }
     
-    public Long getIdFormation() {
+    /**
+     * Constructeur simple d'une formation
+     * @param idFormation identifiant unique d'une formation
+     * @param intitule nom d'une formation
+     */
+    public Formation(Integer idFormation, String intitule){
+        this.idFormation = idFormation;
+        this.intitule = intitule;
+    }
+    
+    public Integer getIdFormation() {
         return idFormation;
     }
 
@@ -100,7 +110,7 @@ public class Formation implements Serializable {
         return listeFormateurs;
     }
     
-    public void setIdFormation(Long idFormation) {
+    public void setIdFormation(Integer idFormation) {
         this.idFormation = idFormation;
     }
 

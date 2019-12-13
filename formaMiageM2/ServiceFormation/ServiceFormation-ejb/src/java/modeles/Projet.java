@@ -1,5 +1,6 @@
 package modeles;
 
+import enumerations.EnumEtat;
 import java.io.Serializable;
 import java.util.Date;
 import javax.ejb.ActivationConfigProperty;
@@ -21,8 +22,9 @@ public class Projet implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer idProjet;
     private String intituleProjet;
-    //@Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateProjet;
+    private EnumEtat etatProjet;
     private Formation formation;
     private Formateur formateur;
     private Salle salle;
@@ -40,6 +42,7 @@ public class Projet implements Serializable {
         this.idProjet = idProjet;
         this.intituleProjet = intituleProjet;
         this.dateProjet = dateProjet;
+        this.etatProjet = EnumEtat.EnProjet;
         this.formation = formation;
         this.formateur = formateur;
         this.salle = salle;
@@ -49,6 +52,7 @@ public class Projet implements Serializable {
     public Projet(Integer idProjet, String intituleProjet) {
         this.idProjet = idProjet;
         this.intituleProjet = intituleProjet;
+        this.etatProjet = EnumEtat.EnProjet;
     }
     
     public Integer getIdProjet() {
@@ -66,7 +70,11 @@ public class Projet implements Serializable {
     public Date getDateProjet() {
         return dateProjet;
     }
-
+    
+    public EnumEtat getEtatProjet() {
+        return etatProjet;
+    }
+    
     public Formation getFormation() {
         return formation;
     }
@@ -89,6 +97,10 @@ public class Projet implements Serializable {
 
     public void setDateProjet(Date date) {
         this.dateProjet = date;
+    }
+    
+    public void setEtatProjet(EnumEtat etatProjet) {
+        this.etatProjet = etatProjet;
     }
 
     public void setFormation(Formation formation) {

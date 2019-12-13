@@ -14,4 +14,6 @@ public class Ressources {
     public final static String FILE_FORMATION = "listeFormations";
     public final static String FILE_FORMATEUR = "listeFormateurs";
     public final static String FILE_SALLE = "listeSalles";
+    
+    public final static String MSG_PROJET_ANNULE = "ANNULE";
 }
