@@ -19,7 +19,7 @@ public class Projet implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idProjet;
+    private Integer idProjet;
     private String intituleProjet;
     //@Temporal(javax.persistence.TemporalType.DATE)
     private Date dateProjet;
@@ -36,7 +36,7 @@ public class Projet implements Serializable {
      * @param formateur formateur assurant la formation du projet
      * @param salle salle disponible pour assurer la formation
      */
-    public Projet(Long idProjet, String intituleProjet, Date dateProjet, Formation formation, Formateur formateur, Salle salle){
+    public Projet(Integer idProjet, String intituleProjet, Date dateProjet, Formation formation, Formateur formateur, Salle salle){
         this.idProjet = idProjet;
         this.intituleProjet = intituleProjet;
         this.dateProjet = dateProjet;
@@ -46,12 +46,12 @@ public class Projet implements Serializable {
     }
 
     // test
-    public Projet(Long idProjet, String intituleProjet) {
+    public Projet(Integer idProjet, String intituleProjet) {
         this.idProjet = idProjet;
         this.intituleProjet = intituleProjet;
     }
     
-    public Long getIdProjet() {
+    public Integer getIdProjet() {
         return idProjet;
     }
 
@@ -79,7 +79,7 @@ public class Projet implements Serializable {
         return salle;
     }
     
-    public void setIdProjet(Long idProjet) {
+    public void setIdProjet(Integer idProjet) {
         this.idProjet = idProjet;
     }
         

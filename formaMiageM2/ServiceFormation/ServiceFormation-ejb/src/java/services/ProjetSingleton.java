@@ -2,6 +2,7 @@ package services;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
@@ -18,20 +19,11 @@ import static modeles.Formateur_.idFormateur;
 @Singleton
 @LocalBean
 public class ProjetSingleton {
-    //@EJB
-    //FormateurSingleton formateur;
+    private final HashMap<Integer, Projet> listeProjets;
     
-    private final ArrayList<Projet> listeProjets = new ArrayList<>();
-    
-    public void creerProjet(Projet p){
-        listeProjets.add(p);
+    public ProjetSingleton(){
+        listeProjets = new HashMap<>();
+        Projet p1 = new Projet(1, "Projet Beta Test");
+        listeProjets.put(p1.getIdProjet(), p1);
     }
-    
-    /*
-    public Projet creerProjet(Long idProjet, String intituleProjet, Date dateProjet, Formation formation, Formateur formateur, Salle salle) {
-        Projet p = new Projet(listeProjets.size(), formateur.getFormateur(idFormateur));
-        listeProjets.add(p);
-        
-        return p;
-    } */ 
 }

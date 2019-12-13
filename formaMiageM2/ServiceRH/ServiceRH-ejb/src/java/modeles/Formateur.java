@@ -15,10 +15,10 @@ public class Formateur implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idFormateur;
+    private Integer idFormateur;
     private String nomFormateur;
     private String prenomFormateur;
-    private String[] competence;
+    private String competence;
 
     /**
      * Constructeur d'un formateur
@@ -27,14 +27,14 @@ public class Formateur implements Serializable {
      * @param prenomFormateur prenom d'un formateur
      * @param competence liste de competences d'un formateur
      */
-    public Formateur(Long idFormateur, String nomFormateur, String prenomFormateur, String[] competence) {
+    public Formateur(Integer idFormateur, String nomFormateur, String prenomFormateur, String competence) {
         this.idFormateur = idFormateur;
         this.nomFormateur = nomFormateur;
         this.prenomFormateur = prenomFormateur;
         this.competence = competence;
     }
     
-    public Long getIdFormateur() {
+    public Integer getIdFormateur() {
         return idFormateur;
     }
 
@@ -46,11 +46,11 @@ public class Formateur implements Serializable {
         return prenomFormateur;
     }
 
-    public String[] getCompetence() {
+    public String getCompetence() {
         return competence;
     }
     
-    public void setIdFormateur(Long idFormateur) {
+    public void setIdFormateur(Integer idFormateur) {
         this.idFormateur = idFormateur;
     }
 
@@ -62,7 +62,7 @@ public class Formateur implements Serializable {
         this.prenomFormateur = prenomFormateur;
     }
 
-    public void setCompetence(String[] competence) {
+    public void setCompetence(String competence) {
         this.competence = competence;
     }
     

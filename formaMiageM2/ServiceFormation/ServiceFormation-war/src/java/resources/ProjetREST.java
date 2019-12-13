@@ -5,7 +5,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 import modeles.Projet;
-import services.gestionProjet;
+import services.GestionProjet;
 
 /**
  *
@@ -14,7 +14,7 @@ import services.gestionProjet;
 @Path("projets")
 public class ProjetREST {
     @EJB
-    private gestionProjet gestionProjet;
+    private GestionProjet gestionProjet;
     
     @PUT
     public Response createProjet() {

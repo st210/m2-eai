@@ -12,7 +12,7 @@ import javax.persistence.Id;
 @Entity
 public class Salle implements Serializable {
     @Id
-    private int idSalle;
+    private Integer idSalle;
     private String materiel;
     private EnumStatutSalle statut;
 
@@ -20,7 +20,7 @@ public class Salle implements Serializable {
      * Constructeur simple
      * @param idSalle identifiant unique d'une salle
      */
-    public Salle(int idSalle) {
+    public Salle(Integer idSalle) {
         this.idSalle = idSalle;
     }
 
@@ -29,7 +29,7 @@ public class Salle implements Serializable {
      * @param idSalle identifiant unique d'une salle
      * @param materiel liste de materiel présent dans la salle
      */
-    public Salle(int idSalle, String materiel) {
+    public Salle(Integer idSalle, String materiel) {
         this.idSalle = idSalle;
         this.materiel = materiel;
     }
@@ -67,7 +67,7 @@ public class Salle implements Serializable {
         return idSalle;
     }
 
-    public void setIdSalle(int idSalle) {
+    public void setIdSalle(Integer idSalle) {
         this.idSalle = idSalle;
     }
     
