@@ -2,7 +2,6 @@ package services;
 
 import enumerations.EnumEtat;
 import java.util.ArrayList;
-import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 import modeles.Projet;
 
@@ -11,7 +10,6 @@ import modeles.Projet;
  * @author Estée
  */
 @Singleton
-@LocalBean
 public class ProjetSingleton {
     private final ArrayList<Projet> listeProjets;
     private static ProjetSingleton ps_instance = new ProjetSingleton();

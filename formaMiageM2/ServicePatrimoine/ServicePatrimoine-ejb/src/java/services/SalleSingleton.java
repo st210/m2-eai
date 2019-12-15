@@ -1,7 +1,6 @@
 package services;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import modeles.Salle;
 
 /**
@@ -9,23 +8,17 @@ import modeles.Salle;
  * @author Estée
  */
 public class SalleSingleton {
-    public final HashMap<Integer, Salle> listeSalles;
-    public final ArrayList<Salle> listeS;
+    public final ArrayList<Salle> listeSalles;
     private static SalleSingleton s_instance = new SalleSingleton();
     
     public SalleSingleton(){
-        listeS = new ArrayList<>();
-        Salle s = new Salle(3,"test salle");
-        listeS.add(s);
-        
-        listeSalles = new HashMap<>();
-        Salle s1 = new Salle(0, "Grande Salle");
-        Salle s2 = new Salle(1, "Moyenne Salle");
-        Salle s3 = new Salle(2, "Petite Salle");
-
-        listeSalles.put(s1.getIdSalle(), s1);
-        listeSalles.put(s1.getIdSalle(), s2);
-        listeSalles.put(s1.getIdSalle(), s3);
+        listeSalles = new ArrayList<>();
+        Salle s1 = new Salle(1, "Petite Salle");
+        Salle s2 = new Salle(2, "Moyenne Salle");
+        Salle s3 = new Salle(3, "Grande Salle");
+        listeSalles.add(s1);
+        listeSalles.add(s2);
+        listeSalles.add(s3);
     }
     
     public static SalleSingleton getInstance(){
@@ -37,11 +30,7 @@ public class SalleSingleton {
     }
     
     public Salle addToList(Salle s){
-        listeS.add(s);
+        listeSalles.add(s);
         return s;
-    }
-    
-    public HashMap<Integer, Salle> getSalles(){
-        return listeSalles;
     }
 }

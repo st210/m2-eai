@@ -15,7 +15,7 @@ import modeles.Projet;
  *
  * @author Estée
  */
-@Stateless
+@Stateless(name="BeanProjet")
 @LocalBean
 public class GestionProjet {
     @Inject

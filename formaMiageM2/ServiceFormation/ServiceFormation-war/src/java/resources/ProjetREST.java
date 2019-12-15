@@ -3,8 +3,6 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
-import java.util.logging.Logger;
-import javax.ejb.EJB;
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
@@ -16,11 +14,14 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import modeles.Formateur;
+import modeles.Formation;
 import modeles.Projet;
 import modeles.Salle;
+import services.GestionFormateur;
+import services.GestionFormation;
 import services.GestionProjet;
 import services.GestionSalle;
-import services.SalleSingleton;
 
 /**
  *
@@ -28,10 +29,10 @@ import services.SalleSingleton;
  */
 @Path("projet")
 public class ProjetREST {
-    @EJB
-    private GestionProjet gestionProjet;
-    @EJB
-    private GestionSalle gestionSalle;
+    private GestionProjet gestionProjet = new GestionProjet();
+    private GestionSalle gestionSalle = new GestionSalle();
+    private GestionFormateur gestionFormateur = new GestionFormateur();
+    private GestionFormation gestionFormation = new GestionFormation();
     
     @GET
     @Path("{id}")
@@ -62,6 +63,67 @@ public class ProjetREST {
         Projet p = new Projet(Integer.parseInt(jsonObject.getString("idProjet")), jsonObject.getString("intituleProjet"));
         gestionProjet.creerProjet(p);
 
+        return Response.accepted().build();
+    }
+    
+    @GET
+    @Path("/formateur/{id}")
+    public Response getFormateur(@PathParam("id") String id) throws IOException {
+        Formateur f = gestionFormateur.getFormateur(Integer.parseInt(id));
+        JsonObjectBuilder objectBuilder = Json.createObjectBuilder()
+                .add("idFormateur", f.getIdFormateur())
+                .add("nomFormateur", f.getNomFormateur())
+                .add("nomFormateur", f.getPrenomFormateur())
+                .add("nomFormateur", f.getCompetence());
+
+        JsonObject jsonObject = objectBuilder.build();
+
+        String jsonString;
+        try (Writer writer = new StringWriter()) {
+            Json.createWriter(writer).write(jsonObject);
+            jsonString = writer.toString();
+        }
+        return Response.ok(jsonString, MediaType.APPLICATION_JSON).build();
+    }
+    
+    @PUT
+    @Consumes("application/json")
+    @Path("/formateur")
+    public Response createFormateur(String body) {
+        JsonReader reader = Json.createReader(new StringReader(body));
+        JsonObject jsonObject = reader.readObject();
+        Formateur f = new Formateur(Integer.parseInt(jsonObject.getString("idFormateur")), jsonObject.getString("nomFormateur"),
+                                    jsonObject.getString("prenomFormateur"), jsonObject.getString("competence"));
+        gestionFormateur.creerFormateur(f);
+        return Response.accepted().build();
+    }
+    
+    @GET
+    @Path("/formation/{id}")
+    public Response getFormation(@PathParam("id") String id) throws IOException {
+        Formation f = gestionFormation.getFormation(Integer.parseInt(id));
+        JsonObjectBuilder objectBuilder = Json.createObjectBuilder()
+                .add("idFormation", f.getIdFormation())
+                .add("intitule", f.getIntitule());
+
+        JsonObject jsonObject = objectBuilder.build();
+
+        String jsonString;
+        try (Writer writer = new StringWriter()) {
+            Json.createWriter(writer).write(jsonObject);
+            jsonString = writer.toString();
+        }
+        return Response.ok(jsonString, MediaType.APPLICATION_JSON).build();
+    }
+    
+    @PUT
+    @Consumes("application/json")
+    @Path("/formation")
+    public Response createFormation(String body) {
+        JsonReader reader = Json.createReader(new StringReader(body));
+        JsonObject jsonObject = reader.readObject();
+        Formation f = new Formation(Integer.parseInt(jsonObject.getString("idFormation")),jsonObject.getString("nomFormation"));
+        gestionFormation.creerFormation(f);
         return Response.accepted().build();
     }
     

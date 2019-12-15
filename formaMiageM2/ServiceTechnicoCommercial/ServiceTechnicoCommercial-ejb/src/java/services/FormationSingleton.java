@@ -1,37 +1,36 @@
 package services;
 
 import java.util.ArrayList;
-import javax.ejb.LocalBean;
-import javax.ejb.Singleton;
 import modeles.Formation;
 
 /**
  *
  * @author Estée
  */
-@Singleton
-@LocalBean
 public class FormationSingleton {
-    private final ArrayList<Formation> formations = new ArrayList<>();
+    public final ArrayList<Formation> listeFormations;
+    private static FormationSingleton f_instance = new FormationSingleton();
     
-    /**
-     * Creer une formation
-     * @param idF identifiant unique d'une formation
-     * @param intituleF nom d'une formation
-     * @return une formation
-     */
-    public Formation creerFormation(Integer idF, String intituleF) {
-        Formation f = new Formation(idF, intituleF);
-        formations.add(f);
-        return f;
+    public FormationSingleton(){
+        listeFormations = new ArrayList<>();
+        Formation f1 = new Formation(1, "Java");
+        Formation f2 = new Formation(2, "Agilite");
+        Formation f3 = new Formation(3, "WinDev");
+        listeFormations.add(f1);
+        listeFormations.add(f2);
+        listeFormations.add(f3);
     }
     
-    /**
-     * Obtenir une formation par recherche de son identifiant
-     * @param idF identifiant unique d'une formation
-     * @return une formation
-     */
-    public Formation getFormationById(int idF) {
-        return formations.get(idF);
+    public static FormationSingleton getInstance(){
+        return f_instance;
+    }
+    
+    public Formation recupFormationById(int idF){
+        return listeFormations.get(idF);
+    }
+    
+    public Formation addToList(Formation f){
+        listeFormations.add(f);
+        return f;
     }
 }

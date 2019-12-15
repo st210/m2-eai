@@ -4,7 +4,7 @@ package services;
  *
  * @author Estée
  */
-public class gestionCatalogue {
+public class GestionCatalogue {
     /**
      * Ajout d'un catalogue
      */

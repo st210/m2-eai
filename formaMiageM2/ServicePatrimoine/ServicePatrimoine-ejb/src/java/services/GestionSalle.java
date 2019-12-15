@@ -25,7 +25,7 @@ import modeles.Salle;
     @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "listeProjets"),
     @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Topic")
 })
-@Stateless
+@Stateless(name="BeanSalle")
 @LocalBean
 public class GestionSalle implements MessageListener{
     @Inject
