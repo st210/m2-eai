@@ -1,0 +1,489 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Simple API for EAI project (M2 MIAGE)",
+    "version" : "1.0.0",
+    "title" : "EAI API",
+    "contact" : {
+      "email" : "estee.desanctis@toulouse.miage.fr"
+    },
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host" : "virtserver.swaggerhub.com",
+  "basePath" : "/st210/EAI/1.0.0",
+  "tags" : [ {
+    "name" : "admins",
+    "description" : "Secured Admin-only calls"
+  }, {
+    "name" : "developers",
+    "description" : "Operations available to regular developers"
+  } ],
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/catalogue" : {
+      "get" : {
+        "tags" : [ "developers" ],
+        "description" : "Afficher les catalogues de formations",
+        "operationId" : "catalogue",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "idCatalogue",
+          "in" : "query",
+          "description" : "identifiant unique d'un catalogue",
+          "required" : false,
+          "type" : "integer",
+          "minimum" : 0,
+          "format" : "int32"
+        }, {
+          "name" : "nomCatalogue",
+          "in" : "query",
+          "description" : "nom du catalogue",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "listeFormations",
+          "in" : "query",
+          "description" : "liste des formations associees au catalogue",
+          "required" : false,
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          },
+          "collectionFormat" : "multi"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "catalogue existant",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/catalogue"
+              }
+            }
+          },
+          "400" : {
+            "description" : "bad input parameter"
+          }
+        }
+      }
+    },
+    "/formation" : {
+      "get" : {
+        "tags" : [ "developers" ],
+        "description" : "Afficher les formations",
+        "operationId" : "formation",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "idFormation",
+          "in" : "query",
+          "description" : "identifiant unique d'une formation",
+          "required" : false,
+          "type" : "integer",
+          "minimum" : 0,
+          "format" : "int32"
+        }, {
+          "name" : "intitule",
+          "in" : "query",
+          "description" : "nom d'une formation",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "type",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "enum" : [ "Courte", "Longue" ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "formation existante",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/formation"
+              }
+            }
+          },
+          "400" : {
+            "description" : "bad input parameter"
+          }
+        }
+      }
+    },
+    "/formateur" : {
+      "get" : {
+        "tags" : [ "developers" ],
+        "description" : "Afficher les formateurs",
+        "operationId" : "formateur",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "idFormateur",
+          "in" : "query",
+          "description" : "identifiant unique d'un formateur",
+          "required" : false,
+          "type" : "integer",
+          "minimum" : 0,
+          "format" : "int32"
+        }, {
+          "name" : "nomFormateur",
+          "in" : "query",
+          "description" : "nom d'un formateur",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "prenomFormateur",
+          "in" : "query",
+          "description" : "prenom d'un formateur",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "listeCompetences",
+          "in" : "query",
+          "description" : "competences d'un formateur",
+          "required" : false,
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          },
+          "collectionFormat" : "multi"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "formateur existant",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/formateur"
+              }
+            }
+          },
+          "400" : {
+            "description" : "bad input parameter"
+          }
+        }
+      }
+    },
+    "/salle" : {
+      "get" : {
+        "tags" : [ "developers" ],
+        "description" : "Afficher les salles",
+        "operationId" : "salle",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "idSalle",
+          "in" : "query",
+          "description" : "identifiant unique d'une salle",
+          "required" : false,
+          "type" : "integer",
+          "minimum" : 0,
+          "format" : "int32"
+        }, {
+          "name" : "materiel",
+          "in" : "query",
+          "description" : "description du materiel present dans la salle",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "statut",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "enum" : [ "indisponible", "affectee", "pressentie" ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "salle existante",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/salle"
+              }
+            }
+          },
+          "400" : {
+            "description" : "bad input parameter"
+          }
+        }
+      }
+    },
+    "/client" : {
+      "get" : {
+        "tags" : [ "developers" ],
+        "description" : "Afficher les clients",
+        "operationId" : "client",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "idClient",
+          "in" : "query",
+          "description" : "identifiant unique d'un client",
+          "required" : false,
+          "type" : "integer",
+          "minimum" : 0,
+          "format" : "int32"
+        }, {
+          "name" : "nom",
+          "in" : "query",
+          "description" : "nom d'un client (moral ou physique)",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "coordonnees",
+          "in" : "query",
+          "description" : "coordonnees d'un client",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "client existant",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/client"
+              }
+            }
+          },
+          "400" : {
+            "description" : "bad input parameter"
+          }
+        }
+      }
+    },
+    "/demandeFormation" : {
+      "get" : {
+        "tags" : [ "developers" ],
+        "description" : "Afficher les demandes de formation",
+        "operationId" : "demandeFormation",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "idDemandeFormation",
+          "in" : "query",
+          "description" : "identifiant unique d'une demande de formation",
+          "required" : false,
+          "type" : "integer",
+          "minimum" : 0,
+          "format" : "int32"
+        }, {
+          "name" : "formation",
+          "in" : "query",
+          "description" : "resume d'une formation et de ses specificites",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "intitule",
+          "in" : "query",
+          "description" : "description de la demande de formation",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "nbParticipant",
+          "in" : "query",
+          "description" : "nombre de participants s'inscrivant a la formation",
+          "required" : false,
+          "type" : "integer",
+          "minimum" : 0,
+          "format" : "int32"
+        }, {
+          "name" : "client",
+          "in" : "query",
+          "description" : "nom et coordonnees du client demandant la formation",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "demande de formation existante",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/demandeFormation"
+              }
+            }
+          },
+          "400" : {
+            "description" : "bad input parameter"
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "catalogue" : {
+      "type" : "object",
+      "required" : [ "idCatalogue" ],
+      "properties" : {
+        "idCatalogue" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 10
+        },
+        "nomCatalogue" : {
+          "type" : "string",
+          "example" : "Catalogue des formations en developpement"
+        },
+        "listeFormations" : {
+          "type" : "array",
+          "example" : "formation en Java ou C",
+          "items" : {
+            "type" : "object",
+            "properties" : { }
+          }
+        }
+      }
+    },
+    "formation" : {
+      "type" : "object",
+      "required" : [ "capaciteMax", "capaciteMin", "description", "intitule", "type" ],
+      "properties" : {
+        "idFormation" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 1
+        },
+        "intitule" : {
+          "type" : "string",
+          "example" : "Java"
+        },
+        "description" : {
+          "type" : "string",
+          "example" : "Formation pour apprendre le langage Java"
+        },
+        "type" : {
+          "example" : "Courte"
+        },
+        "capaciteMin" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 5
+        },
+        "capaciteMax" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 20
+        },
+        "tarif" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : "1000€ / personne"
+        },
+        "etat" : {
+          "example" : "En projet"
+        },
+        "listeSalles" : {
+          "type" : "array",
+          "example" : "salle1, salle",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "listeFormateurs" : {
+          "type" : "array",
+          "example" : "Maxime Viala, Guillaume Ringue",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "periode" : {
+          "type" : "string",
+          "format" : "date",
+          "example" : "2019-07-31T00:00:00.000+0000"
+        }
+      }
+    },
+    "formateur" : {
+      "type" : "object",
+      "required" : [ "idFormateur", "listeCompetences", "nomFormateur", "prenomFormateur" ],
+      "properties" : {
+        "idFormateur" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 13
+        },
+        "nomFormateur" : {
+          "type" : "string",
+          "example" : "Viala"
+        },
+        "prenomFormateur" : {
+          "type" : "string",
+          "example" : "Maxime"
+        },
+        "listeCompetences" : {
+          "type" : "array",
+          "example" : "Java, PHP",
+          "items" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "salle" : {
+      "type" : "object",
+      "required" : [ "idSalle" ],
+      "properties" : {
+        "idSalle" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 2
+        },
+        "materiel" : {
+          "type" : "string",
+          "example" : "Projecteur"
+        },
+        "statut" : {
+          "example" : "affectee"
+        }
+      }
+    },
+    "client" : {
+      "type" : "object",
+      "required" : [ "coordoonnees", "idClient", "nomClient" ],
+      "properties" : {
+        "idClient" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 123
+        },
+        "nomClient" : {
+          "type" : "string",
+          "example" : "Orange"
+        },
+        "coordoonnees" : {
+          "type" : "string",
+          "example" : "aistay.decendix@orange.fr"
+        }
+      }
+    },
+    "demandeFormation" : {
+      "type" : "object",
+      "required" : [ "idDemandeFormation" ],
+      "properties" : {
+        "idDemandeFormation" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 12
+        },
+        "formation" : {
+          "type" : "object",
+          "example" : "Formation courte de Java à 100€ / personne. Les objectifs de la formation sont tatati tatata.",
+          "properties" : { }
+        },
+        "intitule" : {
+          "type" : "string",
+          "example" : "Developpement Java avance"
+        },
+        "client" : {
+          "type" : "object",
+          "example" : "Nom et coordoonnées du client",
+          "properties" : { }
+        },
+        "nbParticipant" : {
+          "type" : "integer",
+          "example" : 15
+        }
+      }
+    }
+  }
+}
