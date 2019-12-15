@@ -13,6 +13,7 @@ import javax.persistence.Id;
 public class Salle implements Serializable {
     @Id
     private Integer idSalle;
+    private String nomSalle;
     private String materiel;
     private EnumStatutSalle statut;
 

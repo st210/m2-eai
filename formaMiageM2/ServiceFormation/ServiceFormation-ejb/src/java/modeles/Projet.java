@@ -17,7 +17,6 @@ import javax.persistence.Temporal;
  */
 @Entity
 public class Projet implements Serializable {
-    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer idProjet;
@@ -55,12 +54,10 @@ public class Projet implements Serializable {
         this.etatProjet = EnumEtat.EnProjet;
     }
     
+    public Projet(){}
+    
     public Integer getIdProjet() {
         return idProjet;
-    }
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
     }
 
     public String getIntituleProjet() {

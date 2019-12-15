@@ -19,7 +19,10 @@ import modeles.Salle;
     @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Topic")
 })
 public class GestionSalle implements MessageListener{
-
+    
+    public GestionSalle(){
+    }
+    
     // récup msg du topic projet
     @Override
     public void onMessage(Message message) {
@@ -36,16 +39,16 @@ public class GestionSalle implements MessageListener{
     /**
      * Creer une salle
      */
-    public SalleSingleton creerSalle(){
-        SalleSingleton salleS = new SalleSingleton();
-        return salleS;
+    public Salle creerSalle(Salle salle){
+        SalleSingleton.getInstance().listeSalles.put(salle.getId(), salle);
+        return salle;
     }
     
     /**
      * Obtenir une salle
      */
     public SalleSingleton getSalleById(Integer idS){
-        return ;
+        return null;
     }
     
     /**

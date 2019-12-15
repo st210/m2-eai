@@ -21,17 +21,20 @@ public class GestionProjet {
     @Inject
     private static JMSContext context;    
     @Resource(lookup = "listeProjets")
-    private static Topic topic;
+    private Topic topic;
     @EJB
-    ProjetSingleton projetSingleton;
+    ProjetSingleton projetSingleton = ProjetSingleton.getInstance();
     
-    public Projet creerProjet(){
-        Projet p = new Projet(1, "formation EAI");
-        
+    public Projet creerProjet(Projet p){
         ObjectMessage om = context.createObjectMessage(p);
+        projetSingleton.addToList(p);
         context.createProducer().send(topic, om);
         return p;
     };
+    
+    public Projet getProjet(int id){
+        return projetSingleton.recupProjetById(id);
+    }   
     
     public ArrayList<Projet> getAllProjets(){
         return null;

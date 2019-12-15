@@ -8,7 +8,8 @@ import modeles.Salle;
  * @author Estée
  */
 public class SalleSingleton {
-    private final HashMap<Integer, Salle> listeSalles;
+    public final HashMap<Integer, Salle> listeSalles;
+    private static SalleSingleton m_Instance = new SalleSingleton();
     
     public SalleSingleton(){
         listeSalles = new HashMap<>();
@@ -19,6 +20,10 @@ public class SalleSingleton {
         listeSalles.put(s1.getIdSalle(), s1);
         listeSalles.put(s1.getIdSalle(), s2);
         listeSalles.put(s1.getIdSalle(), s3);
+    }
+    
+    public static SalleSingleton getInstance(){
+        return m_Instance;
     }
     
     public HashMap<Integer, Salle> getSalles(){
