@@ -9,7 +9,7 @@ import modeles.Formateur;
 import modeles.Formation;
 import modeles.Salle;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-12-15T16:31:55")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-12-15T19:49:23")
 @StaticMetamodel(Projet.class)
 public class Projet_ { 
 

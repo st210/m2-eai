@@ -20,23 +20,31 @@ public class Salle implements Serializable {
     /**
      * Constructeur simple
      * @param idSalle identifiant unique d'une salle
+     * @param nomSalle nom d'une salle
      */
-    public Salle(Integer idSalle) {
+    public Salle(Integer idSalle, String nomSalle) {
         this.idSalle = idSalle;
+        this.nomSalle = nomSalle;
     }
 
     /**
      * Constructeur avec materiel
      * @param idSalle identifiant unique d'une salle
+     * @param nomSalle nom d'une salle
      * @param materiel liste de materiel présent dans la salle
      */
-    public Salle(Integer idSalle, String materiel) {
+    public Salle(Integer idSalle, String nomSalle, String materiel) {
         this.idSalle = idSalle;
+        this.nomSalle = nomSalle;
         this.materiel = materiel;
     }
         
-    public Integer getId() {
+    public Integer getIdSalle() {
         return idSalle;
+    }
+    
+    public String getNomSalle() {
+        return nomSalle;
     }
 
     public String getMateriel() {
@@ -47,12 +55,16 @@ public class Salle implements Serializable {
         return statut;
     }
     
-    public void setId(int id) {
+    public void setIdSalle(int id) {
         this.idSalle = id;
     }
 
     public void setMateriel(String materiel) {
         this.materiel = materiel;
+    }
+    
+    public void setNomSalle(String nomSalle) {
+        this.nomSalle = nomSalle;
     }
 
     public void setStatut(EnumStatutSalle statut) {
@@ -62,14 +74,5 @@ public class Salle implements Serializable {
     @Override
     public String toString() {
         return "modeles.Salle[ id=" + idSalle + " ]";
-    }
-
-    public int getIdSalle() {
-        return idSalle;
-    }
-
-    public void setIdSalle(Integer idSalle) {
-        this.idSalle = idSalle;
-    }
-    
+    }    
 }

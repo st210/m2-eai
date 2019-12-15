@@ -26,18 +26,16 @@ public class GestionProjet {
     ProjetSingleton projetSingleton = ProjetSingleton.getInstance();
     
     public Projet creerProjet(Projet p){
-        ObjectMessage om = context.createObjectMessage(p);
         projetSingleton.addToList(p);
-        context.createProducer().send(topic, om);
         return p;
+        
+        //ObjectMessage om = context.createObjectMessage(p);
+        //projetSingleton.addToList(p);
+        //context.createProducer().send(topic, om);
+        //return p;
     };
     
     public Projet getProjet(int id){
         return projetSingleton.recupProjetById(id);
-    }   
-    
-    public ArrayList<Projet> getAllProjets(){
-        return null;
-        //return new ArrayList<Projet>(projetSingleton);
     }
 }

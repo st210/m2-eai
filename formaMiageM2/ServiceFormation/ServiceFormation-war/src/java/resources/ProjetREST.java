@@ -29,51 +29,16 @@ import services.SalleSingleton;
  */
 @Path("projet")
 public class ProjetREST {
-    private GestionSalle gestionSalle = new GestionSalle();
+    @EJB
+    private GestionSalle gestionSalle;
     
     @EJB
     private GestionProjet gestionProjet;
     
     @GET
-    public Response getProjets() {
-        return Response.accepted().build();
-    }
-    /*
-    @PUT
-    public Response createProjet() {
-        
-        return Response.accepted().build();
-    }*/
-    
-    @PUT
-    @Path("/salle")
-    public Response createSalle(){
-        Salle salle = new Salle(5, "salleWTF");
-        //gestionSalle.creerSalle();
-        return Response.accepted().build();
-    }
-    
-    @PUT
-    @Path("/creer")
-    @Consumes("application/json")
-    public Response createProjet(String body) {
-
-        //Création d'un Json Reader pour récupérer le body de la requête
-        JsonReader reader = Json.createReader(new StringReader(body));
-        JsonObject jsonObject = reader.readObject();
-        
-        //Création d'un objet projet et appel du code métier via l'EJB
-        Projet p = new Projet(Integer.parseInt(jsonObject.getString("idProjet")), jsonObject.getString("intituleProjet"));
-        gestionProjet.creerProjet(p);
-
-        return Response.accepted().build();
-    }
-
-    @GET
     @Path("{id}")
     public Response getProjet(@PathParam("id") String id) throws IOException {
         Projet p = gestionProjet.getProjet(Integer.parseInt(id));
-        //Projet p = new Projet(1, "Java");
         JsonObjectBuilder objectBuilder = Json.createObjectBuilder()
                 .add("IdProjet", p.getIdProjet())
                 .add("Intitule", p.getIntituleProjet());
@@ -86,11 +51,48 @@ public class ProjetREST {
             jsonString = writer.toString();
         }
         return Response.ok(jsonString, MediaType.APPLICATION_JSON).build();
-    }    
+    }
     
-    /*
-    @GET
-    public Response getProjet() {
+    @PUT
+    @Consumes("application/json")
+    public Response createProjet(String body) {
+        //Création d'un Json Reader pour récupérer le body de la requête
+        JsonReader reader = Json.createReader(new StringReader(body));
+        JsonObject jsonObject = reader.readObject();
+        
+        //Création d'un objet projet et appel du code métier via l'EJB
+        Projet p = new Projet(Integer.parseInt(jsonObject.getString("idProjet")), jsonObject.getString("intituleProjet"));
+        gestionProjet.creerProjet(p);
+
         return Response.accepted().build();
-    }*/
+    }
+    
+    @GET
+    @Path("/salle/{id}")
+    public Response getSalle(@PathParam("id") String id) throws IOException {
+        Salle s = gestionSalle.getSalle(Integer.parseInt(id));
+        JsonObjectBuilder objectBuilder = Json.createObjectBuilder()
+                .add("idSalle", s.getIdSalle())
+                .add("nomSalle", s.getNomSalle());
+
+        JsonObject jsonObject = objectBuilder.build();
+
+        String jsonString;
+        try (Writer writer = new StringWriter()) {
+            Json.createWriter(writer).write(jsonObject);
+            jsonString = writer.toString();
+        }
+        return Response.ok(jsonString, MediaType.APPLICATION_JSON).build();
+    }
+    
+    @PUT
+    @Consumes("application/json")
+    @Path("/salle")
+    public Response createSalle(String body) {
+        JsonReader reader = Json.createReader(new StringReader(body));
+        JsonObject jsonObject = reader.readObject();
+        Salle s = new Salle(Integer.parseInt(jsonObject.getString("idSalle")), jsonObject.getString("nomSalle"));
+        gestionSalle.creerSalle(s);
+        return Response.accepted().build();
+    }
 }

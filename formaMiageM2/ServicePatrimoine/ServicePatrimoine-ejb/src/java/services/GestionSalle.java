@@ -2,12 +2,17 @@ package services;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.Resource;
 import javax.ejb.ActivationConfigProperty;
+import javax.ejb.EJB;
 import javax.ejb.MessageDriven;
+import javax.inject.Inject;
+import javax.jms.JMSContext;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.ObjectMessage;
+import javax.jms.Queue;
 import modeles.Salle;
 
 /**
@@ -19,36 +24,26 @@ import modeles.Salle;
     @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Topic")
 })
 public class GestionSalle implements MessageListener{
-    
-    public GestionSalle(){
-    }
-    
-    // récup msg du topic projet
-    @Override
-    public void onMessage(Message message) {
-        if (message instanceof ObjectMessage) {
-            try {
-                ObjectMessage om = (ObjectMessage) message;
-                Object obj = om.getObject();
-            } catch (JMSException ex) {
-                Logger.getLogger(Salle.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }
+    @Inject
+    private static JMSContext context;    
+    @Resource(lookup = "salle")
+    private Queue queue;
+    @EJB
+    SalleSingleton salleSingleton = SalleSingleton.getInstance();
     
     /**
      * Creer une salle
      */
     public Salle creerSalle(Salle salle){
-        SalleSingleton.getInstance().listeSalles.put(salle.getId(), salle);
+        salleSingleton.listeSalles.put(salle.getIdSalle(), salle);
         return salle;
     }
     
     /**
      * Obtenir une salle
      */
-    public SalleSingleton getSalleById(Integer idS){
-        return null;
+    public Salle getSalle(Integer idS){
+        return salleSingleton.recupSalleById(idS);
     }
     
     /**
@@ -62,5 +57,18 @@ public class GestionSalle implements MessageListener{
     /**
      * Affecter une salle
      */
+    
+    // récup msg du topic projet
+    @Override
+    public void onMessage(Message message) {
+        if (message instanceof ObjectMessage) {
+            try {
+                ObjectMessage om = (ObjectMessage) message;
+                Object obj = om.getObject();
+            } catch (JMSException ex) {
+                Logger.getLogger(Salle.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
     
 }

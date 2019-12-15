@@ -54,8 +54,6 @@ public class Projet implements Serializable {
         this.etatProjet = EnumEtat.EnProjet;
     }
     
-    public Projet(){}
-    
     public Integer getIdProjet() {
         return idProjet;
     }
