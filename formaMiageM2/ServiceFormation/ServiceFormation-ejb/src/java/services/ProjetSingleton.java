@@ -4,8 +4,6 @@ import enumerations.EnumEtat;
 import java.util.ArrayList;
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import modeles.Projet;
 
 /**

@@ -36,7 +36,9 @@ public class GestionSalle implements MessageListener{
     SalleSingleton salleSingleton = SalleSingleton.getInstance();
     
     /**
-     * Creer une salle
+     * Créer une salle
+     * @param salle la salle à créer
+     * @return la salle créée
      */
     public Salle creerSalle(Salle salle){
         //salleSingleton.listeSalles.put(salle.getIdSalle(), salle);
@@ -46,6 +48,8 @@ public class GestionSalle implements MessageListener{
     
     /**
      * Obtenir une salle
+     * @param idS identifiant de la salle
+     * @return la salle
      */
     public Salle getSalle(Integer idS){
         return salleSingleton.recupSalleById(idS);
