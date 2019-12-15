@@ -3,7 +3,6 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.json.Json;
@@ -30,10 +29,9 @@ import services.SalleSingleton;
 @Path("projet")
 public class ProjetREST {
     @EJB
-    private GestionSalle gestionSalle;
-    
-    @EJB
     private GestionProjet gestionProjet;
+    @EJB
+    private GestionSalle gestionSalle;
     
     @GET
     @Path("{id}")

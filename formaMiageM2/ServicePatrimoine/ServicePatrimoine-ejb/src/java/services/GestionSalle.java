@@ -5,7 +5,9 @@ import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.EJB;
+import javax.ejb.LocalBean;
 import javax.ejb.MessageDriven;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.jms.JMSContext;
 import javax.jms.JMSException;
@@ -23,6 +25,8 @@ import modeles.Salle;
     @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "listeProjets"),
     @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Topic")
 })
+@Stateless
+@LocalBean
 public class GestionSalle implements MessageListener{
     @Inject
     private static JMSContext context;    
@@ -35,7 +39,8 @@ public class GestionSalle implements MessageListener{
      * Creer une salle
      */
     public Salle creerSalle(Salle salle){
-        salleSingleton.listeSalles.put(salle.getIdSalle(), salle);
+        //salleSingleton.listeSalles.put(salle.getIdSalle(), salle);
+        salleSingleton.addToList(salle);
         return salle;
     }
     
